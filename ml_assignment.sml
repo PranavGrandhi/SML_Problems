@@ -157,3 +157,16 @@ fun mapTree f (empty) = f empty
 val tree5 = mapTree increment tree1;
 labels tree5;
 
+(* Problem 10 *)
+infix <
+fun sortTree (op <) T = mapTree (fn 
+    leaf l => leaf (sort (op <) l) 
+  | node (root, left_child, right_child) => node (sort (op <) root, left_child, right_child)
+  | empty => empty) T;
+
+(* Call Problem 10 *)
+val tree6 = node ([1,5,6,8],leaf [1,2,3,4], 
+                        node ([12,4,16,13], empty, leaf [0,2,5,7])) ;
+labels tree6;
+val tree7 = sortTree (op <) tree6;
+labels tree7;
