@@ -6,7 +6,6 @@ Control.Print.printDepth := 100;
 Control.Print.printLength := 100;
 
 (* Problem 1 *)
-
 fun merge [] L = L
     | merge L [] = L
     | merge (h1::rest1) (h2::rest2) = 
