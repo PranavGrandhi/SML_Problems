@@ -1,3 +1,7 @@
+(* Pranav Venkata Grandhi *)
+(* pvg2018 *)
+(* Standard ML Assignment *)
+
 Control.Print.printDepth := 100;
 Control.Print.printLength := 100;
 
@@ -83,3 +87,33 @@ fun labels (empty) = []
 
 (* Call Problem 6 *)
 labels tree1;
+
+(* Problem 7 *)
+infix ==
+fun replace (op ==) x y (empty) = (* If empty *)
+        empty
+    | replace (op ==) x y (leaf l) = (* If leaf *)
+        if l == x then
+            (leaf y)
+        else
+            (leaf l)
+    | replace (op ==) x y (node(root, left_child, right_child)) = (* If node *)
+        let
+            val new_root = (* define root *)
+                if root == x then
+                    y
+                else
+                    root
+            val new_left_child = (* define new left child *)
+                replace (op ==) x y left_child
+            val new_right_child = (* define new right child *)
+                replace (op ==) x y right_child
+        in
+            node(new_root, new_left_child, new_right_child)
+        end;    
+
+(* Call Problem 7 *)
+val tree2 = replace (op =) 4 40 tree1;
+labels tree2;
+val tree3 = replace (op <>) 7 0 tree1;
+labels tree3;
