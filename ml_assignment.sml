@@ -74,3 +74,12 @@ datatype 'a tree = node of 'a * 'a tree * 'a tree | leaf of 'a | empty ;
 val tree1 = node (5, node (4, leaf 3, empty),
                     node (8, node (7, leaf 6, empty),
                             node (9, empty, leaf 10)));
+
+(* Problem 6 *)
+fun labels (empty) = []
+    | labels (leaf l) = [l]
+    | labels (node (root, left_child, right_child)) =
+        labels left_child @ (root :: labels right_child); 
+
+(* Call Problem 6 *)
+labels tree1;
