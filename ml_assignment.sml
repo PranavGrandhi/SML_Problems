@@ -117,3 +117,19 @@ val tree2 = replace (op =) 4 40 tree1;
 labels tree2;
 val tree3 = replace (op <>) 7 0 tree1;
 labels tree3;
+
+(* Problem 8 *)
+fun replaceEmpty y (empty) = y
+    | replaceEmpty y (leaf l) = (leaf l)
+    | replaceEmpty y (node(root, left_child, right_child)) =
+        let
+            val new_root = root
+            val new_left_child = replaceEmpty y left_child
+            val new_right_child = replaceEmpty y right_child
+        in
+            node(new_root, new_left_child, new_right_child)
+        end;
+
+(* Call Problem 8 *)
+val tree4 = replaceEmpty (node (12, leaf 11, leaf 13)) tree1;
+labels tree4;
