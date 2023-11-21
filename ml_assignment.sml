@@ -17,7 +17,7 @@ fun split [] = ([], [])
     | split [x] = ([x], [])
     | split (first::second::rest) = 
         let
-            val (split1, split2) = split(rest)
+            val (split1, split2) = split rest
         in
             ((first::split1), (second::split2))
         end;
@@ -26,8 +26,14 @@ fun split [] = ([], [])
 split [1,4,2,6,8,3,9,5,4];
 
 (* Problem 3 *)
-
+fun mergeSort [] = []
+    | mergeSort [x] = [x]
+    | mergeSort L = 
+    let
+        val (split1, split2) = split L
+    in
+        merge (mergeSort split1) (mergeSort split2)
+    end;
 
 (* Call Problem 3 *)
 mergeSort [1,7,2,6,8,3,9,5,4];
-
