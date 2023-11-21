@@ -133,3 +133,26 @@ fun replaceEmpty y (empty) = y
 (* Call Problem 8 *)
 val tree4 = replaceEmpty (node (12, leaf 11, leaf 13)) tree1;
 labels tree4;
+
+(* Problem 9 *)
+
+(* Increment function copied from question *)
+fun increment empty = leaf 0
+    | increment (leaf a) = leaf (a+1)
+    | increment (node (a, L, R)) = node (a+1, L, R);
+
+(* MapTree function *)
+fun mapTree f (empty) = f empty
+    | mapTree f (leaf l) = f (leaf l)
+    | mapTree f (node(root, left_child, right_child)) =
+        let
+            val new_left_child = mapTree f left_child
+            val new_right_child = mapTree f right_child
+        in
+            f (node(root, new_left_child, new_right_child))
+        end;
+
+(* Call Problem 9 *)
+val tree5 = mapTree increment tree1;
+labels tree5;
+
