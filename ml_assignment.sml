@@ -15,8 +15,19 @@ merge [1,3,5,7,9] [2,4,6,8,10] ;
 (* Problem 2 *)
 fun split [] = ([], [])
     | split [x] = ([x], [])
-    | 
+    | split (first::second::rest) = 
+        let
+            val (split1, split2) = split(rest)
+        in
+            ((first::split1), (second::split2))
+        end;
 
 (* Call Problem 2 *)
 split [1,4,2,6,8,3,9,5,4];
+
+(* Problem 3 *)
+
+
+(* Call Problem 3 *)
+mergeSort [1,7,2,6,8,3,9,5,4];
 
