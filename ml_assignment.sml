@@ -66,3 +66,11 @@ fun sort (op <) [] = []
 (* Call Problem 4 *)
 sort (op <) [1,9, 3, 6, 7];
 sort (fn(a,b) => length a < length b) [[1, 9, 3, 6], [1], [2,4,6], [5,5]];
+
+(* Problem 5 *)
+datatype 'a tree = node of 'a * 'a tree * 'a tree | leaf of 'a | empty ; 
+
+(* Call Problem 5 *)
+val tree1 = node (5, node (4, leaf 3, empty),
+                    node (8, node (7, leaf 6, empty),
+                            node (9, empty, leaf 10)));
