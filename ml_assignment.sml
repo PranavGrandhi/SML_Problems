@@ -146,10 +146,11 @@ fun mapTree f (empty) = f empty
     | mapTree f (leaf l) = f (leaf l)
     | mapTree f (node(root, left_child, right_child)) =
         let
+            val new_root = root
             val new_left_child = mapTree f left_child
             val new_right_child = mapTree f right_child
         in
-            f (node(root, new_left_child, new_right_child))
+            f (node(new_root, new_left_child, new_right_child))
         end;
 
 (* Call Problem 9 *)
